@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Everything Be True</title>
+    <script>
+    function truthCheck(collection, pre) {
+      let arr = [];
+      for (let i = 0; i < collection.length; i++) {
+        if (collection[i].hasOwnProperty(pre)) {
+          let value = new Boolean(collection[i][pre]);
+          if (value == true) {
+            arr.push('true');
+          } else {
+            arr.push('false');
+          }
+        } else {
+          arr.push('false');
+        }
+      }
+
+      for (let j = 0; j < arr.length; j++) {
+        if (arr[j] === 'false') {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    //Make sure it works behind the scenes:
+    console.log(truthCheck([{"name": "Pete", "onBoat": true}, {"name": "Repeat", "onBoat": true}, {"name": "FastFoward", "onBoat": null}], "onBoat"));
+
+    function tryIt() {
+      let userInput = prompt("Input a collection and a predicate:");
+
+      if (userInput) {
+        alert(truthCheck(userInput));
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Everything Be True</h1>
+    <p>Check if the predicate (second argument) is truthy on all elements of a collection (first argument).</p>
+    <p>In other words, you are given an array collection of objects. The predicate <code>pre</code> will be an object property and you need to return <code>true</code> if its value is truthy. Otherwise, return <code>false</code>.</p>
+    <button onclick="tryIt();">Try it!</button>
+    <br/>
+    <p>Here are some ideas:</p>
+    <p><code>[{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"</code> should return <code>true</code>.</p>
+    <p><code>[{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"</code> should return <code>false</code>.</p>
+    <p><code>[{"user": "Tinky-Winky", "sex": "male", "age": 0}, {"user": "Dipsy", "sex": "male", "age": 3}, {"user": "Laa-Laa", "sex": "female", "age": 5}, {"user": "Po", "sex": "female", "age": 4}], "age"</code> should return <code>false</code>.</p>
+  </body>
+</html>
